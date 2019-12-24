@@ -56,9 +56,12 @@ body{
 <div ng-app="myApp" ng-controller="customerCtrl">
 <ul>
 <li ng-repeat="x in myData">
-{{x.title}}<br>
-<a href={{x.url}} target="_blank">Click here to read in detail.</a><br>
-{{x.description}}
+  <b>{{x.title}}</b><br>
+  <b>Description</b>:<i> {{x.description}}</i></br>
+  <b>Published At</b>: <i>{{x.publishedAt}}</i></br>
+  <b>Content</b>: <i>{{x.content}}</i></br>
+  <a href={{x.url}}>Click here to read in detail.</a><br>
+
 </li>
 </ul>
 
