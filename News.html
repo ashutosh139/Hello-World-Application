@@ -1,81 +1,117 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-  integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-  crossorigin="anonymous">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<style>
-body{
-  margin-top: 70px;
-  background: #333;
-  color:#fff;
-}
-</style>
-
-
-</head>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-<body>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<body ng-app="myApp">
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
   <a class="navbar-brand" href="index.html">Welcome</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-  <span class="navbar-toggler-icon"></span>
-  </button>
 
-  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-  <ul class="navbar-nav mr-auto">
-    <li class="nav-item active">
-      <a class="nav-link" href="WeightConverter.html">Weight Converter <span class="sr-only">(current)</span></a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="BookMarker.html">Save Your Bookmarks!</a>
-    </li>
-    <li class="nav-item">
-    <a class="nav-link" href="News.html">Read Latest news</a>
-    </li>
-    <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About Me</a>
-      <div class="dropdown-menu" aria-labelledby="dropdown01">
-        <a class="dropdown-item" href="https://www.linkedin.com/in/ashutosh-pandey-75867b109/" target="blank"style="color:blue;">Linkdln</a>
-        <a class="dropdown-item" href="https://www.facebook.com/ashutosh.pandey.792" target="blank">Facebook</a>
-        <a class="dropdown-item" href="https://www.instagram.com/ashutosh_1318/" target="blank">Instagram</a>
-      </div>
-    </li>
-  </ul>
-  <!--<form class="form-inline my-2 my-lg-0">
-    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-  </form>
-  -->
-  </div>
   </nav>
-
-<div ng-app="myApp" ng-controller="customerCtrl">
-<ul>
-<li ng-repeat="x in myData">
-  <b>{{x.title}}</b><br>
-  <b>Description</b>:<i> {{x.description}}</i></br>
-  <b>Published At</b>: <i>{{x.publishedAt}}</i></br>
-  <b>Content</b>: <i>{{x.content}}</i></br>
-  <a href={{x.url}}>Click here to read in detail.</a><br>
-
-</li>
-</ul>
-
-</div>
+<a href="#!ent" style="margin-left:25%;padding:2%;">Entertainment News</a>
+<a href="#!headlines" style="padding:2%;">Top Headlines</a>
+<a href="#!technology" style="padding:2%;">Technology News</a>
+<a href="#!business" style="padding:2%;">Business News</a>
+<div ng-view></div>
 <script>
-var app=angular.module("myApp",[]);
-app.controller("customerCtrl",function($scope,$http){
+var app=angular.module("myApp",["ngRoute"]);
+app.config(function($routeProvider){
+$routeProvider
 
+    .when("/ent", {
+        template :
+        "<h1 style='margin-left:40%;'>Entertainment News</h1>"+
+
+        "<ul>"+
+        "<li ng-repeat='x in ent'>"+
+        "<b>{{x.title}}</b><br>"+
+        "<b>Published At</b>: <i>{{x.publishedAt}}</i></br>"+
+        "<b>Description</b>:<i> {{x.description}}</i></br>"+
+        "<b>Content</b>: <i>{{x.content}}</i></br>"+
+        "<a href={{x.url}}>Click here to read in detail.</a><br>"+
+        "</li>"+
+        "</ul>"+
+
+        "</div>",
+        controller : "entertainment"
+    })
+    .when("/headlines", {
+          template :
+          "<h1 style='margin-left:40%;'>Top Headlines</h1>"+
+
+          "<ul>"+
+          "<li ng-repeat='x in headline'>"+
+          "<b>{{x.title}}</b><br>"+
+          "<b>Published At</b>: <i>{{x.publishedAt}}</i></br>"+
+          "<b>Description</b>:<i> {{x.description}}</i></br>"+
+          "<b>Content</b>: <i>{{x.content}}</i></br>"+
+          "<a href={{x.url}}>Click here to read in detail.</a><br>"+
+          "</li>"+
+          "</ul>"+
+
+          "</div>",
+        controller : "headlines"
+    })
+    .when("/technology", {
+          template :
+          "<h1 style='margin-left:40%;'>Technology News</h1>"+
+
+          "<ul>"+
+          "<li ng-repeat='x in technologyData'>"+
+          "<b>{{x.title}}</b><br>"+
+          "<b>Published At</b>: <i>{{x.publishedAt}}</i></br>"+
+          "<b>Description</b>:<i> {{x.description}}</i></br>"+
+          "<b>Content</b>: <i>{{x.content}}</i></br>"+
+          "<a href={{x.url}}>Click here to read in detail.</a><br>"+
+          "</li>"+
+          "</ul>"+
+
+          "</div>",
+        controller : "technology"
+})
+.when("/business", {
+      template :
+      "<h1 style='margin-left:40%;'>Business News</h1>"+
+
+      "<ul>"+
+      "<li ng-repeat='x in businessData'>"+
+      "<b>{{x.title}}</b><br>"+
+      "<b>Published At</b>: <i>{{x.publishedAt}}</i></br>"+
+      "<b>Description</b>:<i> {{x.description}}</i></br>"+
+      "<b>Content</b>: <i>{{x.content}}</i></br>"+
+      "<a href={{x.url}}>Click here to read in detail.</a><br>"+
+      "</li>"+
+      "</ul>"+
+
+      "</div>",
+    controller : "business"
+});
+});
+app.controller("headlines",function($scope,$http){
 $http.get("https://newsapi.org/v2/top-headlines?country=in&apiKey=a7e0146a2bdb4751bc83a40592de3f83").then(
 function(response){
-$scope.myData=response.data.articles;
+$scope.headline=response.data.articles;
 });
 });
-
+app.controller("entertainment",function($scope,$http){
+$http.get("https://newsapi.org/v2/top-headlines?country=in&category=entertainment&apiKey=a7e0146a2bdb4751bc83a40592de3f83").then(
+function(response){
+$scope.ent=response.data.articles;
+});
+});
+app.controller("technology",function($scope,$http){
+$http.get("https://newsapi.org/v2/top-headlines?country=in&category=technology&apiKey=a7e0146a2bdb4751bc83a40592de3f83").then(
+function(response){
+$scope.technologyData=response.data.articles;
+});
+});
+app.controller("business",function($scope,$http){
+$http.get("https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=a7e0146a2bdb4751bc83a40592de3f83").then(
+function(response){
+$scope.businessData=response.data.articles;
+});
+});
+//https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=a7e0146a2bdb4751bc83a40592de3f83
 </script>
 </body>
 </html>
