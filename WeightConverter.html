@@ -1,102 +1,120 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
 <head>
-  <meta charset="UTF-8">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
   integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
   crossorigin="anonymous">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <style>
 body{
   margin-top: 70px;
   background: #333;
   color:#fff;
+
 }
+.w3-input{
+width:50%;
+
+}
+.dhoom{
+margin-left:35%;
+}
+.info{
+margin-left:43%;}
 </style>
 
-<title >Weight Converter</title>
 </head>
 <body>
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-  <a class="navbar-brand" href="index.html">Welcome</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-  <span class="navbar-toggler-icon"></span>
-  </button>
+  <a class="navbar-brand" href="index.html">Home</a>
 
-  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-  <ul class="navbar-nav mr-auto">
-    <li class="nav-item active">
-      <a class="nav-link" href="WeightConverter.html">Weight Converter <span class="sr-only">(current)</span></a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="BookMarker.html">Save Your Bookmarks!</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="News.html">Read Latest news</a>
-    </li>
-    <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About Me</a>
-      <div class="dropdown-menu" aria-labelledby="dropdown01">
-        <a class="dropdown-item" href="https://www.linkedin.com/in/ashutosh-pandey-75867b109/" target="blank"style="color:blue;">Linkdln</a>
-        <a class="dropdown-item" href="https://www.facebook.com/ashutosh.pandey.792" target="blank">Facebook</a>
-        <a class="dropdown-item" href="https://www.instagram.com/ashutosh_1318/" target="blank">Instagram</a>
-      </div>
-    </li>
-  </ul>
-  <!--<form class="form-inline my-2 my-lg-0">
-    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-  </form>
-  -->
-  </div>
   </nav>
-<div class="container">
-<div class="row">
-<div class="col-md-6 offset-md-3">
+
 <h1 class="display-4 text-center mb-3">Weight Converter</h1>
-<form>
-  <div class="form-group">
-  <input type="number"
-  id="lbsInput"
-  class="form-control form-control-lg"
-  placeholder="Enter Pounds..">
+<p class="info">Enter input in any fields.</p>
+<div class="dhoom">
+
+<label>Pounds</label>
+<input id="inputPounds" class="w3-input w3-border" type="number" placeholder="Pounds"
+oninput="weightConverter(this.id,this.value)" onchange="weightConverter(this.id,this.value)">
 </div>
-</form>
-<div id="output">
-<div class="card bg-primary mb-2">
-<div class="card-block">
-<h4>Grams:</h4>
-<div id="gramsoutput"></div>
+
+<div class="dhoom">
+<label>Kilograms</label>
+
+<input id="inputKilograms" class="w3-input w3-border" type="number" placeholder="Kilograms"
+oninput="weightConverter(this.id,this.value)" onchange="weightConverter(this.id,this.value)">
 </div>
+<div class="dhoom">
+<label>Ounces</label>
+<input id="inputOunces" class="w3-input w3-border" type="number" placeholder="Ounces"
+oninput="weightConverter(this.id,this.value)" onchange="weightConverter(this.id,this.value)">
 </div>
-<div class="card bg-success mb-2">
-<div class="card-block">
-<h4>KiloGrams:</h4>
-<div id="kgoutput"></div>
+<div class="dhoom">
+<label>Grams</label>
+<input id="inputGrams" class="w3-input w3-border" type="number" placeholder="Grams"
+oninput="weightConverter(this.id,this.value)" onchange="weightConverter(this.id,this.value)">
 </div>
+<div class="dhoom">
+<label>Stones</label>
+<input id="inputStones" class="w3-input w3-border" type="number" placeholder="Stones"
+oninput="weightConverter(this.id,this.value)" onchange="weightConverter(this.id,this.value)">
 </div>
-<div class="card bg-danger mb-2">
-<div class="card-block">
-<h4>Ounces:</h4>
-<div id="ozoutput"></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
+<footer>
+  <p>&copy; Ashutosh Pandey</p>
+</footer>
+
+</body>
 
 <script>
-document.getElementById('output').style.visibility='hidden';
-document.getElementById('lbsInput').addEventListener('input',function(e){
-    let pounds=e.target.value;
-    document.getElementById('output').style.visibility='visible';
-    document.getElementById('gramsoutput').innerHTML=pounds/0.0022046;
-    document.getElementById('kgoutput').innerHTML=pounds/2.2046;
-    document.getElementById('ozoutput').innerHTML=pounds*16;
 
-});
+function weightConverter(source,valNum) {
+  valNum = parseFloat(valNum);
+  debugger;
+ if(isNaN(valNum)){
+ alert('You just try to input wrong number.');
+ }
+
+  var inputPounds = document.getElementById("inputPounds");
+  var inputKilograms = document.getElementById("inputKilograms");
+  var inputOunces = document.getElementById("inputOunces");
+  var inputGrams = document.getElementById("inputGrams");
+  var inputStones = document.getElementById("inputStones");
+  if (source=="inputPounds") {
+    inputKilograms.value=(valNum/2.2046).toFixed(2);
+    inputOunces.value=(valNum*16).toFixed(2);
+    inputGrams.value=(valNum/0.0022046).toFixed();
+    inputStones.value=(valNum*0.071429).toFixed(3);
+  }
+  if (source=="inputKilograms") {
+    inputPounds.value=(valNum*2.2046).toFixed(2);
+    inputOunces.value=(valNum*35.274).toFixed(2);
+    inputGrams.value=(valNum*1000).toFixed();
+    inputStones.value=(valNum*0.1574).toFixed(3);
+  }
+  if (source=="inputOunces") {
+    inputPounds.value=(valNum*0.062500).toFixed(4);
+    inputKilograms.value=(valNum/35.274).toFixed(4);
+    inputGrams.value=(valNum/0.035274).toFixed(1);
+    inputStones.value=(valNum*0.0044643).toFixed(4);
+  }
+  if (source=="inputGrams") {
+    inputPounds.value=(valNum*0.0022046).toFixed(4);
+    inputKilograms.value=(valNum/1000).toFixed(4);
+    inputOunces.value=(valNum*0.035274).toFixed(3);
+    inputStones.value=(valNum*0.00015747).toFixed(5);
+  }
+  if (source=="inputStones") {
+    inputPounds.value=(valNum*14).toFixed(1);
+    inputKilograms.value=(valNum/0.15747).toFixed(1);
+    inputOunces.value=(valNum*224).toFixed();
+    inputGrams.value=(valNum/0.00015747).toFixed();
+  }
+
+}
 </script>
-</body>
 </html>

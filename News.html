@@ -2,16 +2,23 @@
 <html>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
-
+<link rel="stylesheet" type="text/css" href="news.css">
 <body ng-app="myApp">
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-  <a class="navbar-brand" href="index.html">Welcome</a>
+  <a class="navbar-brand" href="index.html">Home</a>
 
   </nav>
-<a href="#!ent" style="margin-left:25%;padding:2%;">Entertainment News</a>
-<a href="#!headlines" style="padding:2%;">Top Headlines</a>
-<a href="#!technology" style="padding:2%;">Technology News</a>
-<a href="#!business" style="padding:2%;">Business News</a>
+
+
+
+
+<div class="">
+<a  class="menu" href="#!ent" style="margin-left:25%">Entertainment News</a>
+<a class="menu" href="#!">Top Headlines</a>
+<a href="#!technology" class="menu">Technology News</a>
+<a href="#!business" class="menu">Business News</a>
+<a href="#!sports" class="menu">Sports News</a>
+</div>
 <div ng-view></div>
 <script>
 var app=angular.module("myApp",["ngRoute"]);
@@ -24,28 +31,30 @@ $routeProvider
 
         "<ul>"+
         "<li ng-repeat='x in ent'>"+
-        "<b>{{x.title}}</b><br>"+
+        "<b style='background:black;color:white'>{{x.title}}</b><br>"+
+        "<a href='{{x.urlToImage}}' download>See image related to this news.</a></br>"+
         "<b>Published At</b>: <i>{{x.publishedAt}}</i></br>"+
         "<b>Description</b>:<i> {{x.description}}</i></br>"+
         "<b>Content</b>: <i>{{x.content}}</i></br>"+
-        "<a href={{x.url}}>Click here to read in detail.</a><br>"+
+        "<a target='_blank' href={{x.url}}>Click here to read in detail.</a><br>"+
         "</li>"+
         "</ul>"+
 
         "</div>",
         controller : "entertainment"
     })
-    .when("/headlines", {
+    .when("/", {
           template :
           "<h1 style='margin-left:40%;'>Top Headlines</h1>"+
 
           "<ul>"+
           "<li ng-repeat='x in headline'>"+
-          "<b>{{x.title}}</b><br>"+
+          "<b style='background:black;color:white'>{{x.title}}</b><br>"+
+"<a href='{{x.urlToImage}}' download>See image related to this news.</a></br>"+
           "<b>Published At</b>: <i>{{x.publishedAt}}</i></br>"+
           "<b>Description</b>:<i> {{x.description}}</i></br>"+
           "<b>Content</b>: <i>{{x.content}}</i></br>"+
-          "<a href={{x.url}}>Click here to read in detail.</a><br>"+
+          "<a target='_blank' href={{x.url}}>Click here to read in detail.</a><br>"+
           "</li>"+
           "</ul>"+
 
@@ -58,11 +67,12 @@ $routeProvider
 
           "<ul>"+
           "<li ng-repeat='x in technologyData'>"+
-          "<b>{{x.title}}</b><br>"+
+          "<b style='background:black;color:white'>{{x.title}}</b><br>"+
+          "<a href='{{x.urlToImage}}' download>See image related to this news.</a></br>"+
           "<b>Published At</b>: <i>{{x.publishedAt}}</i></br>"+
           "<b>Description</b>:<i> {{x.description}}</i></br>"+
           "<b>Content</b>: <i>{{x.content}}</i></br>"+
-          "<a href={{x.url}}>Click here to read in detail.</a><br>"+
+          "<a target='_blank' href={{x.url}}>Click here to read in detail.</a><br>"+
           "</li>"+
           "</ul>"+
 
@@ -75,17 +85,38 @@ $routeProvider
 
       "<ul>"+
       "<li ng-repeat='x in businessData'>"+
-      "<b>{{x.title}}</b><br>"+
+      "<b style='background:black;color:white'>{{x.title}}</b><br>"+
+      "<a href='{{x.urlToImage}}' download>See image related to this news.</a></br>"+
       "<b>Published At</b>: <i>{{x.publishedAt}}</i></br>"+
       "<b>Description</b>:<i> {{x.description}}</i></br>"+
       "<b>Content</b>: <i>{{x.content}}</i></br>"+
-      "<a href={{x.url}}>Click here to read in detail.</a><br>"+
+      "<a target='_blank' href={{x.url}}>Click here to read in detail.</a><br>"+
       "</li>"+
       "</ul>"+
 
       "</div>",
     controller : "business"
+})
+
+.when("/sports", {
+      template :
+      "<h1 style='margin-left:40%;'>Sports News</h1>"+
+
+      "<ul>"+
+      "<li ng-repeat='x in sportsdata'>"+
+      "<b style='background:black;color:white'>{{x.title}}</b><br>"+
+      "<a href='{{x.urlToImage}}' download>See image related to this news.</a></br>"+
+      "<b>Published At</b>: <i>{{x.publishedAt}}</i></br>"+
+      "<b>Description</b>:<i> {{x.description}}</i></br>"+
+        "<b>Content</b>: <i>{{x.content}}</i></br>"+
+      "<a target='_blank' href={{x.url}}>Click here to read in detail.</a><br>"+
+      "</li>"+
+      "</ul>"+
+
+      "</div>",
+    controller : "sports"
 });
+
 });
 app.controller("headlines",function($scope,$http){
 $http.get("https://newsapi.org/v2/top-headlines?country=in&apiKey=a7e0146a2bdb4751bc83a40592de3f83").then(
@@ -109,6 +140,13 @@ app.controller("business",function($scope,$http){
 $http.get("https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=a7e0146a2bdb4751bc83a40592de3f83").then(
 function(response){
 $scope.businessData=response.data.articles;
+});
+});
+
+app.controller("sports",function($scope,$http){
+$http.get("https://newsapi.org/v2/top-headlines?country=in&category=sports&apiKey=a7e0146a2bdb4751bc83a40592de3f83").then(
+function(response){
+$scope.sportsdata=response.data.articles;
 });
 });
 //https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=a7e0146a2bdb4751bc83a40592de3f83
