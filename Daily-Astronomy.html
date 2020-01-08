@@ -1,15 +1,31 @@
 <!DOCTYPE html>
 <html>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<style>
+body {
+  background-color: lightgrey;
+}
+img {
+  border-radius: 8px;
+  max-width: 100%;
+ height: 50%;
+ display: block;
+   margin-left: auto;
+   margin-right: auto;
+   width: 50%;
+}
+</style>
 <body ng-app="myApp">
- 
+
 <div  ng-controller="customerCtrl">
 <ul>
+<h3>Each day a different image or photograph of our fascinating universe is featured, along with a brief explanation written by a professional astronomer.</h3>
+
+<h2>Astronomy Picture of the Day</h2>
 <b>Date:</b>{{myData.date}}</br>
+<img src={{myData.url}}></img><br>
 <b>Title:</b>{{myData.title}}</br>
 <b>Explanation:</b>{{myData.explanation}}</br>
-<img src={{myData.url}}></img><br>
-
 </ul>
 
 </div>
