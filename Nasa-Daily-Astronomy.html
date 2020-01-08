@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body ng-app="myApp">
+ 
+<div  ng-controller="customerCtrl">
+<ul>
+<b>Date:</b>{{myData.date}}</br>
+<b>Title:</b>{{myData.title}}</br>
+<b>Explanation:</b>{{myData.explanation}}</br>
+<img src={{myData.url}}></img><br>
+
+</ul>
+
+</div>
+
+
+<script>
+var app=angular.module("myApp",[]);
+app.controller("customerCtrl",function($scope,$http){
+
+$http.get("https://api.nasa.gov/planetary/apod?api_key=pBKH7r0JtRl0hshiD3BUvuktcNtT5LhlsumwEMIh").then(
+function(response){
+$scope.myData=response.data;
+
+});
+});
+
+</script>
+</body>
+</html>
