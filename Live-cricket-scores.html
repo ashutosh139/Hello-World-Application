@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="jquery.xml2json.js"></script>
+<link href="https://getbootstrap.com/docs/4.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+body {
+  background-color: lightgrey;
+}
+img {
+  border-radius: 8px;
+  max-width: 100%;
+ height: 50%;
+ display: block;
+   margin-left: auto;
+   margin-right: auto;
+   width: 50%;
+}
+table, th , td  {
+  border: 1px solid grey;
+  border-collapse: collapse;
+  padding: 5px;
+}
+table tr:nth-child(odd) {
+  background-color: #f1f1f1;
+}
+table tr:nth-child(even) {
+  background-color: #ffffff;
+}
+</style>
+<body ng-app="myApp">
+
+<div  ng-controller="customerCtrl">
+<ul>
+<h3></h3>
+<p>Search Team:<input type="text" ng-model="test"></p>
+<h2>Live Cricket Scores</h2>
+<table>
+<tr ng-repeat='data in myData|filter:test'>
+<td>{{data.title}}</td>
+<td><a href='{{data.link}}' target="_blank">See in Detail</a></td>
+
+</tr>
+</ul>
+
+</div>
+
+
+<script>
+
+/*var app = angular.module('httpApp', []);
+app.controller('httpController', function ($scope, $http) {
+  $http.get("Sitemap.xml",
+            {
+    transformResponse: function (cnv) {
+      var x2js = new X2JS();
+      var aftCnv = x2js.xml_str2json(cnv);
+      return aftCnv;
+    }
+  })
+    .success(function (response) {
+    console.log(response);
+  });
+})*/
+var app=angular.module("myApp",[]);
+app.controller("customerCtrl",function($scope,$http){
+
+$http.get("http://static.cricinfo.com/rss/livescores.xml",
+{
+  transformResponse: function (cnv) {
+
+    var x2js = new  X2JS();
+    var aftCnv = x2js.xml_str2json(cnv);
+    return aftCnv;
+  }
+}).then(function(response){
+  $scope.myData=response.data.rss.channel.item;
+console.log($scope.myData[0]);
+
+});
+});
+
+</script>
+</body>
+</html>

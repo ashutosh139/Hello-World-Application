@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<link href="https://getbootstrap.com/docs/4.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style>
 body {
   background-color: lightgrey;
@@ -23,7 +25,9 @@ img {
 
 <h2>Astronomy Picture of the Day</h2>
 <b>Date:</b>{{myData.date}}</br>
-<img src={{myData.url}}></img><br>
+<a href={{myData.url}} download>
+<img  src={{myData.url}}></img><br>
+</a>
 <b>Title:</b>{{myData.title}}</br>
 <b>Explanation:</b>{{myData.explanation}}</br>
 </ul>
