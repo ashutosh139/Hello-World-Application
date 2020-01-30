@@ -55,7 +55,7 @@ table tr:nth-child(even) {
 var app=angular.module("myApp",[]);
 app.controller("customerCtrl",function($scope,$http){
 
-$http.get("http://static.cricinfo.com/rss/livescores.xml",
+$http.get("https://static.cricinfo.com/rss/livescores.xml",
 {
   transformResponse: function (cnv) {
 
@@ -63,7 +63,7 @@ $http.get("http://static.cricinfo.com/rss/livescores.xml",
     var aftCnv = x2js.xml_str2json(cnv);
     return aftCnv;
   },
-  
+
 }).then(function(response){
   $scope.myData=response.data.rss.channel.item;
 console.log($scope.myData[0]);
