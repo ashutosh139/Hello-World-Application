@@ -63,7 +63,7 @@ $http.get("http://static.cricinfo.com/rss/livescores.xml",
     var aftCnv = x2js.xml_str2json(cnv);
     return aftCnv;
   },
-  header:{"Accept":"application/json, text/plain, */*"}
+  
 }).then(function(response){
   $scope.myData=response.data.rss.channel.item;
 console.log($scope.myData[0]);
