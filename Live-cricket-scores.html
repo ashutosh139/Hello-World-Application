@@ -33,15 +33,24 @@ table tr:nth-child(odd) {
 table tr:nth-child(even) {
   background-color: #ffffff;
 }
+.search{
+margin-top:5%;
+margin-left:3%;
+}
 </style>
 <body ng-app="myApp">
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <a class="navbar-brand" href="index.html">Home</a>
 
+  </nav>
+<p class="search">Search Team:<input type="text" ng-model="test"></p>
 <div  ng-controller="customerCtrl">
 <ul>
 <h3></h3>
-<p>Search Team:<input type="text" ng-model="test"></p>
+
 <h2>Live Cricket Scores</h2>
-<table>
+
+<table class="">
 <tr ng-repeat='data in myData|filter:test'>
 <td>{{data.title}}</td>
 <td><a href='{{data.link}}' target="_blank">See in Detail</a></td>
