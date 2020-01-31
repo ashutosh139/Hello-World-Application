@@ -58,7 +58,7 @@ table tr:nth-child(even) {
 var app=angular.module("myApp",[]);
 app.controller("customerCtrl",function($scope,$http){
 
-$http.get("http://static.cricinfo.com/rss/livescores.xml",
+$http.get("https://cors-anywhere.herokuapp.com/http://static.cricinfo.com/rss/livescores.xml",
 {
   transformResponse: function (cnv) {
 
