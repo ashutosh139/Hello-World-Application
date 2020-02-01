@@ -39,6 +39,7 @@ $routeProvider
         "<li ng-repeat='x in ent'>"+
         "<b style='background:black;color:white'>{{x.title}}</b><br>"+
         "<a href='{{x.urlToImage}}' download>See image related to this news.</a></br>"+
+"<img src='{{x.urlToImage}}'>"+
         "<b>Published At</b>: <i>{{x.publishedAt}}</i></br>"+
         "<b>Description</b>:<i> {{x.description}}</i></br>"+
         "<b>Content</b>: <i>{{x.content}}</i></br>"+
