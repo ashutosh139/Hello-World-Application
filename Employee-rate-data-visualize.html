@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+<body>
+<div ng-app="myApp" ng-controller="myCntrl">
+
+<select   ng-model=" selectedCountry" ng-options="x.Country for x in employeeData" value="Select" id="countrySelect">
+
+   <option value = "" label = "Please Select Country"></option>
+</select>
+<p>{{selectedCountry}}</p>
+</div>
+
+<script>
+var app=angular.module('myApp',[]);
+
+app.controller('myCntrl',function($scope,$http){
+
+$http.get("employee-rate.json").then(function(response){
+$scope.yearList=[1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007];
+  $scope.listData = [];
+
+angular.forEach(response.data, function (value, key) {
+console.log(value + ': ' +key);
+                // $scope.listData.push(value.name);
+
+console.log(response.data[0]["1991"]);
+
+
+});
+});
+
+</script>
+</body>
+</html>

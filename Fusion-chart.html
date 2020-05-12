@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+  <html>
+<head>
+    <!-- Including AngularJS -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular.min.js"></script>
+    <!-- Including the fusioncharts core library -->
+    <script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
+    <!-- Including the angularjs-fusioncharts directive-->
+    <script type="text/javascript" src="https://unpkg.com/angularjs-fusioncharts@4.0.1/dist/angular-fusioncharts.js"></script>
+    <!-- Including the fusion theme -->
+    <script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>
+    <script type="text/javascript">
+        var myApp = angular.module('myApp', ['ng-fusioncharts']);
+        //STEP 2 - Chart Data
+        const chartData = [
+
+            { label: '1991', value: '56.7000007629' },
+            { label: '1992', value: '56.5' },
+            { label: '1993', value: '56.5999984741' },
+            { label: '1994', value: '56.2000007629' },
+            { label: '1995', value: '56.2000007629' },
+            { label: '1996', value: '56.0999984741' },
+            { label: '1997', value: '56.2000007629' },
+             { label: '1998', value: '56.2000007629' },
+              { label: '1999', value: '56.0999984741' },
+               { label: '2000', value: '56.0999984741' }
+        ];
+
+        // STEP 3 - Chart Configurations
+        const dataSource = {
+            chart: {
+                caption: "Employement data of Afghanistan",
+                subCaption: "Employement Rate",
+                xAxisName: "Year",
+                yAxisName: "% of employment",
+                numberSuffix: "%",
+                theme: "candy",
+            },
+            // Chart Data - from step 2
+            "data": chartData
+        };
+        myApp.controller('MyController', ['$scope', function($scope) {
+            // datasource
+            $scope.myDataSource = dataSource
+        }]);
+    </script>
+</head>
+
+<body ng-app="myApp">
+<div ng-controller="MyController">
+<div fusioncharts id="my-chart-id" width="700" height="400" type="column2d" dataSource="{{myDataSource}}">
+</div>
+</div>
+</body>
+</head>
+</html>
