@@ -1,13 +1,24 @@
 import React, { Component } from 'react'
 import {Line, Pie, Doughnut, Bar} from 'react-chartjs-2';
  class VisualiseCharts extends Component {
+    constructor(props){
+       super();
+    }
+    
+    
+    change(event){
+        this.setState({value: event.target.value});
+    }
     render() {
-        const TotalInfected=this.props.ChartData.total;
-        const totalDeaths=this.props.ChartData.deaths;
-        //const totalDeaths=this.props.IndiaCasesData.confirmedCasesIndian;
-        const discharged=this.props.ChartData.discharged;
+        const TotalInfected=this.props.confirmed;
+        const totalDeaths=this.props.deaths;
+        const discharged=this.props.discharged;
+        // const TotalInfected=this.props.ChartData.total;
+        //const totalDeaths=this.props.ChartData.deaths;
+        //const discharged=this.props.ChartData.discharged;
        const data={
         labels:["Total Infected","Deaths","Discharged"],
+        
         datasets:[
             {
                 labels:"Covid-19 Cases-India",
@@ -19,12 +30,22 @@ import {Line, Pie, Doughnut, Bar} from 'react-chartjs-2';
         ]
 
        }
+       const options={
+        title: {
+            display: true,
+            text: 'Custom Chart Title'
+        }
+    }
       
         return (
             <div>
+                
                 <div className="chart" style={chart}>
-                <Pie data={data} 
-               />
+                <Bar  
+                options={options}
+                data={data}
+                 
+                redraw />
                 </div>
             </div>
         )
@@ -33,6 +54,7 @@ import {Line, Pie, Doughnut, Bar} from 'react-chartjs-2';
 
 const chart={
     width:"720px",
-    marginTop:"-13em"
+    marginTop:"-20em",
+    marginLeft:"435px"
 }
 export default VisualiseCharts;
